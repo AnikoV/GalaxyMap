@@ -12,9 +12,11 @@
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
         <Canvas Panel.ZIndex="1" Grid.Column="0" x:Name="RootCanvas" Background="Gray">
-            <Image x:Name="GalaxyImage" Canvas.Left="-500" Canvas.Top="-500" Source="Images/galactic_full.jpg" Stretch="UniformToFill"/>
+            <Image Panel.ZIndex="2"  x:Name="GalaxyImage" Canvas.Left="-2586" Canvas.Top="-1124" Source="Images/galactic_full.jpg" Stretch="UniformToFill"/>
+
         </Canvas>
-        <Grid Panel.ZIndex="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="red">
+        <Grid Panel.ZIndex="100" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="red">
+
         </Grid>
     </Grid>
 </Window>

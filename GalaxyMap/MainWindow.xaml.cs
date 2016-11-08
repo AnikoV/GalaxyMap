@@ -8,6 +8,7 @@ namespace GalaxyMap
 {
     public partial class MainWindow : Window
     {
+        //new viewmodel
         private MainWindowViewModel _viewModel;
         public MainWindow()
         {

@@ -11,3 +11,17 @@ C:\Users\righo\Documents\Repos\GalaxyMap\GalaxyMap\obj\Debug\GalaxyMap.Propertie
 C:\Users\righo\Documents\Repos\GalaxyMap\GalaxyMap\obj\Debug\GalaxyMap.csproj.GenerateResource.Cache
 C:\Users\righo\Documents\Repos\GalaxyMap\GalaxyMap\obj\Debug\GalaxyMap.exe
 C:\Users\righo\Documents\Repos\GalaxyMap\GalaxyMap\obj\Debug\GalaxyMap.pdb
+D:\TEMP\myProjects\GalaxyMap\bin\Debug\GalaxyMap.exe.config
+D:\TEMP\myProjects\GalaxyMap\obj\Debug\GalaxyMap.exe
+D:\TEMP\myProjects\GalaxyMap\obj\Debug\GalaxyMap.pdb
+D:\TEMP\myProjects\GalaxyMap\bin\Debug\GalaxyMap.exe
+D:\TEMP\myProjects\GalaxyMap\bin\Debug\GalaxyMap.pdb
+D:\TEMP\myProjects\GalaxyMap\obj\Debug\GalaxyMap.csprojResolveAssemblyReference.cache
+D:\TEMP\myProjects\GalaxyMap\obj\Debug\MainWindow.g.cs
+D:\TEMP\myProjects\GalaxyMap\obj\Debug\App.g.cs
+D:\TEMP\myProjects\GalaxyMap\obj\Debug\GalaxyMap_MarkupCompile.cache
+D:\TEMP\myProjects\GalaxyMap\obj\Debug\GalaxyMap_MarkupCompile.lref
+D:\TEMP\myProjects\GalaxyMap\obj\Debug\MainWindow.baml
+D:\TEMP\myProjects\GalaxyMap\obj\Debug\GalaxyMap.g.resources
+D:\TEMP\myProjects\GalaxyMap\obj\Debug\GalaxyMap.Properties.Resources.resources
+D:\TEMP\myProjects\GalaxyMap\obj\Debug\GalaxyMap.csproj.GenerateResource.Cache

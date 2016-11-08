@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using GalaxyMap.ViewModels;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -7,9 +8,12 @@ namespace GalaxyMap
 {
     public partial class MainWindow : Window
     {
+        private MainWindowViewModel _viewModel;
         public MainWindow()
         {
             InitializeComponent();
+            _viewModel = new MainWindowViewModel();
+            DataContext = _viewModel;
             EnableMouseMovements();
         }
 

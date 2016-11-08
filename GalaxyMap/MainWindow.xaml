@@ -16,7 +16,7 @@
 
         </Canvas>
         <Grid Panel.ZIndex="100" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="red">
-
+ 
         </Grid>
     </Grid>
 </Window>

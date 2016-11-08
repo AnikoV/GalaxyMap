@@ -9,7 +9,7 @@ namespace GalaxyMap.ViewModels
         public List<Star> ListOfStars { get; set; }
         public MainWindowViewModel()
         {
-
+            int a = 1;
         }
          
     }

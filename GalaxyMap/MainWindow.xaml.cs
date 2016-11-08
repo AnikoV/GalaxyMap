@@ -14,43 +14,44 @@ namespace GalaxyMap
         }
 
         private Point FirstPoint = new Point();
+
         private void EnableMouseMovements()
         {
-            galaxyImage.MouseLeftButtonDown += (sender, args) =>
+            GalaxyImage.MouseLeftButtonDown += (sender, args) =>
             {
                 FirstPoint = args.GetPosition(this);
-                galaxyImage.CaptureMouse();
+                GalaxyImage.CaptureMouse();
             };
 
-            galaxyImage.MouseWheel += (sender, args) =>
+            GalaxyImage.MouseWheel += (sender, args) =>
             {
-                var matrix = galaxyImage.RenderTransform.Value;
-                var mousePoint = args.GetPosition(galaxyImage);
+                var matrix = GalaxyImage.RenderTransform.Value;
+                var mousePoint = args.GetPosition(GalaxyImage);
 
                 if (args.Delta > 0)
-                    matrix.ScaleAtPrepend(1.15,1.15,mousePoint.X,mousePoint.Y);
+                    matrix.ScaleAtPrepend(1.15, 1.15, mousePoint.X, mousePoint.Y);
                 else
-                    matrix.ScaleAtPrepend(1/1.15,1/1.15, mousePoint.X, mousePoint.Y);
+                    matrix.ScaleAtPrepend(1 / 1.15, 1 / 1.15, mousePoint.X, mousePoint.Y);
 
                 var newMatrix = new MatrixTransform(matrix);
-                galaxyImage.RenderTransform = newMatrix;
+                GalaxyImage.RenderTransform = newMatrix;
             };
 
-            galaxyImage.MouseMove += (sender, args) =>
+            GalaxyImage.MouseMove += (sender, args) =>
             {
                 if (args.LeftButton == MouseButtonState.Pressed)
                 {
                     var temp = args.GetPosition(this);
-                    var res = new Point(FirstPoint.X - temp.X,FirstPoint.Y - temp.Y);
+                    var res = new Point(FirstPoint.X - temp.X, FirstPoint.Y - temp.Y);
 
-                    Canvas.SetLeft(galaxyImage, Canvas.GetLeft(galaxyImage) - res.X);
-                    Canvas.SetTop(galaxyImage, Canvas.GetTop(galaxyImage) - res.Y);
+                    Canvas.SetLeft(GalaxyImage, Canvas.GetLeft(GalaxyImage) - res.X);
+                    Canvas.SetTop(GalaxyImage, Canvas.GetTop(GalaxyImage) - res.Y);
 
                     FirstPoint = temp;
                 }
             };
 
-            galaxyImage.MouseUp += (sender, args) => { galaxyImage.ReleaseMouseCapture(); };
+            GalaxyImage.MouseUp += (sender, args) => { GalaxyImage.ReleaseMouseCapture(); };
         }
     }
 }

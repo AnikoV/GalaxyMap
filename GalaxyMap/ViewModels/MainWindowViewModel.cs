@@ -9,7 +9,7 @@ namespace GalaxyMap.ViewModels
         public List<Galaxy> Galaxies { get; set; }
         public MainWindowViewModel()
         {
-
+            int a = 1;
         }
     }
 }

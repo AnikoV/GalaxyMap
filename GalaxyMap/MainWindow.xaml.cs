@@ -3,32 +3,43 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using GalaxyMap.Models;
 
 namespace GalaxyMap
 {
     public partial class MainWindow : Window
     {
-        //new viewmodel
+        private Point FirstPoint;
         private MainWindowViewModel _viewModel;
+
         public MainWindow()
         {
             InitializeComponent();
+
             _viewModel = new MainWindowViewModel();
             DataContext = _viewModel;
+
             EnableMouseMovements();
         }
 
-        private Point FirstPoint = new Point();
+        private void DrawGalaxy(Galaxy galaxy)
+        {
+        }
+
+        private void DrawStar(Star star)
+        {
+            
+        }
 
         private void EnableMouseMovements()
         {
-            GalaxyImage.MouseLeftButtonDown += (sender, args) =>
+            RootCanvas.MouseLeftButtonDown += (sender, args) =>
             {
                 FirstPoint = args.GetPosition(this);
                 GalaxyImage.CaptureMouse();
             };
 
-            GalaxyImage.MouseWheel += (sender, args) =>
+            RootCanvas.MouseWheel += (sender, args) =>
             {
                 var matrix = GalaxyImage.RenderTransform.Value;
                 var mousePoint = args.GetPosition(GalaxyImage);
@@ -42,7 +53,7 @@ namespace GalaxyMap
                 GalaxyImage.RenderTransform = newMatrix;
             };
 
-            GalaxyImage.MouseMove += (sender, args) =>
+            RootCanvas.MouseMove += (sender, args) =>
             {
                 if (args.LeftButton == MouseButtonState.Pressed)
                 {
@@ -56,7 +67,7 @@ namespace GalaxyMap
                 }
             };
 
-            GalaxyImage.MouseUp += (sender, args) => { GalaxyImage.ReleaseMouseCapture(); };
+            RootCanvas.MouseUp += (sender, args) => { GalaxyImage.ReleaseMouseCapture(); };
         }
     }
 }

@@ -6,11 +6,10 @@ namespace GalaxyMap.ViewModels
 {
     public class MainWindowViewModel : PropertyChangedBase
     {
-        public List<Star> ListOfStars { get; set; }
+        public List<Galaxy> Galaxies { get; set; }
         public MainWindowViewModel()
         {
 
         }
-         
     }
 }

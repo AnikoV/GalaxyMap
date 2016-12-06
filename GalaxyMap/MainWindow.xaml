@@ -11,51 +11,24 @@
             <ColumnDefinition Width="8*"/>
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
-        <Canvas Panel.ZIndex="1" Grid.Column="0" x:Name="RootCanvas" Background="Gray">
+        <Canvas x:Name="BackgroundCanvas" Panel.ZIndex="1" Grid.Column="0" Background="Gray">
             <Image Panel.ZIndex="2"  x:Name="GalaxyImage" Canvas.Left="-2586" Canvas.Top="-1124" Source="Images/galactic_full.jpg" Stretch="UniformToFill"/>
-            <Image Panel.ZIndex="3" x:Name="Star0" Canvas.Left="30" Canvas.Top="30" Source="Images/stars.png" RenderTransformOrigin="0.5,0.5">
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="0.3" ScaleY="0.3"/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Image.RenderTransform>
-            </Image>
-            <Image Panel.ZIndex="3" x:Name="Star1" Canvas.Left="100" Canvas.Top="30" Source="Images/stars.png" RenderTransformOrigin="0.5,0.5">
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="0.3" ScaleY="0.3"/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Image.RenderTransform>
-            </Image>
-            <Image Panel.ZIndex="3" x:Name="Star2" Canvas.Left="30" Canvas.Top="100" Source="Images/stars.png" RenderTransformOrigin="0.5,0.5">
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="0.3" ScaleY="0.3"/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Image.RenderTransform>
-            </Image>
-            <Image Panel.ZIndex="3" x:Name="Star3" Canvas.Left="100" Canvas.Top="100" Source="Images/stars.png" RenderTransformOrigin="0.5,0.5">
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="0.3" ScaleY="0.3"/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Image.RenderTransform>
-            </Image>
+            <Canvas x:Name="StarsCanvas" Panel.ZIndex="3" Canvas.Left="-2586" Canvas.Top="-1124" Height="2735" Width="5471">
+                <!--<Image x:Name="Star0" Canvas.Left="0" Canvas.Top="0" Source="Images/stars.png">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.3" ScaleY="0.3"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>-->
+            </Canvas>
         </Canvas>
-        <Grid Panel.ZIndex="100" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="red">
 
+        <Grid Panel.ZIndex="100" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="red">
+            <Button Content="TEST" Click="ButtonBase_OnClick"/>
         </Grid>
     </Grid>
 </Window>

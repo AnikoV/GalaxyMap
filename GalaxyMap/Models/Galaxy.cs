@@ -4,8 +4,8 @@ namespace GalaxyMap.Models
 {
     public class Galaxy
     {
-        int Id { get; set; }
-        string Name { get; set; }
-        List<Star> Stars { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public List<Star> Stars { get; set; }
     }
 }

@@ -2,8 +2,11 @@
 {
     public class Star
     {
-        int Id { get; set; }
-        string Name { get; set; }
-        string Source { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public double X { get; set; }
+        public double Y { get; set; }
+        public string Source { get; set; }
+
     }
 }

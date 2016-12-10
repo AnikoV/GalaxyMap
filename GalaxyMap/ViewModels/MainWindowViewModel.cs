@@ -11,5 +11,10 @@ namespace GalaxyMap.ViewModels
         {
             int a = 1;
         }
+
+        public void Search(string searchText)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

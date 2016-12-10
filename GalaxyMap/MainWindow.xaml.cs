@@ -19,17 +19,28 @@ namespace GalaxyMap
         private const double ImageScale = 0.3;
         private Point _mousePos;
         private readonly BitmapImage _starBitmapImage = new BitmapImage(new Uri("pack://application:,,,/Images/stars.png", UriKind.Absolute));
+        private Vector _centerOffset;
+        private Vector _labelOffset;
 
         public MainWindow()
         {
             InitializeComponent();
 
+            _centerOffset = new Vector(_starBitmapImage.Width / 2.0 * ImageScale, _starBitmapImage.Height / 2.0 * ImageScale);
+            _labelOffset = new Vector((_starBitmapImage.Width / 2.0 * ImageScale), -5);
+
             _viewModel = new MainWindowViewModel();
             DataContext = _viewModel;
             EnableMouseManipulations();
+            Loaded += OnLoaded;
         }
 
-#region MouseManipulations
+        private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
+        {
+            DrawMap();
+        }
+
+        #region MouseManipulations
         private void EnableMouseManipulations()
         {
             BackgroundCanvas.MouseLeftButtonDown += (sender, args) =>
@@ -80,13 +91,8 @@ namespace GalaxyMap
         #endregion
 
         #region TEST UI
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            TestUiCase();
-        }
-
-        private void TestUiCase()
+        
+        private void DrawMap()
         {
             CreateData();
             DrawData();
@@ -133,20 +139,36 @@ namespace GalaxyMap
         {
             foreach (var star in galaxy.Stars)
             {
-                var image = new Image();
-                var st = new ScaleTransform
+                
+                var scaletransform = new ScaleTransform
                 {
                     ScaleX = ImageScale,
                     ScaleY = ImageScale
                 };
-                var rt = new TransformGroup();
-                rt.Children.Add(st);
-                image.RenderTransform = rt;
-                image.Source = _starBitmapImage;
-                image.Width = _starBitmapImage.Width;
-                image.Height = _starBitmapImage.Height;
+                var transformGroup = new TransformGroup();
+                transformGroup.Children.Add(scaletransform);
+                var image = new Image
+                {
+                    RenderTransform = transformGroup,
+                    Source = _starBitmapImage,
+                    Width = _starBitmapImage.Width,
+                    Height = _starBitmapImage.Height
+                };
                 Canvas.SetLeft(image, star.X);
                 Canvas.SetTop(image, star.Y);
+
+                var textBlock = new TextBlock
+                {
+                    Text = star.Name,
+                    Foreground = Brushes.Chartreuse,
+                    TextAlignment = TextAlignment.Center
+                };
+                StarsCanvas.Children.Add(textBlock);
+                var s = star.X + _labelOffset.X - textBlock.Width/2.0;
+                Canvas.SetLeft(textBlock, s);
+                Canvas.SetTop(textBlock,star.Y + _labelOffset.Y);
+
+                ;
                 StarsCanvas.Children.Add(image);
             }
         }
@@ -157,14 +179,13 @@ namespace GalaxyMap
             {
                 var star0 = galaxy.Stars[i];
                 var star1 = galaxy.Stars[i + 1];
-                var offset = new Vector((_starBitmapImage.Width / 2.0) * ImageScale,
-                                           (_starBitmapImage.Height / 2.0) * ImageScale);
+                
                 var line = new Line
                 {
-                    X1 = star0.X + offset.X,
-                    Y1 = star0.Y + offset.Y,
-                    X2 = star1.X + offset.X,
-                    Y2 = star1.Y + offset.Y,
+                    X1 = star0.X + _centerOffset.X,
+                    Y1 = star0.Y + _centerOffset.Y,
+                    X2 = star1.X + _centerOffset.X,
+                    Y2 = star1.Y + _centerOffset.Y,
                     Stroke = Brushes.LightSteelBlue,
                     StrokeThickness = 2
                 };
@@ -173,5 +194,13 @@ namespace GalaxyMap
         }
         
         #endregion
+
+        private void SearchTextBox_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                _viewModel.Search(SearchTextBox.Text.ToLower());
+            }
+        }
     }
 }

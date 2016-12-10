@@ -12,23 +12,20 @@
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
         <Canvas x:Name="BackgroundCanvas" Panel.ZIndex="1" Grid.Column="0" Background="Gray">
-            <Image Panel.ZIndex="2"  x:Name="GalaxyImage" Canvas.Left="-2586" Canvas.Top="-1124" Source="Images/galactic_full.jpg" Stretch="UniformToFill"/>
-            <Canvas x:Name="StarsCanvas" Panel.ZIndex="3" Canvas.Left="-2586" Canvas.Top="-1124" Height="2735" Width="5471">
-                <!--<Image x:Name="Star0" Canvas.Left="0" Canvas.Top="0" Source="Images/stars.png">
-                    <Image.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="0.3" ScaleY="0.3"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Image.RenderTransform>
-                </Image>-->
-            </Canvas>
+            <Image x:Name="GalaxyImage" Panel.ZIndex="2" Canvas.Left="-2586" Canvas.Top="-1124" Source="Images/galactic_full.jpg" Stretch="UniformToFill"/>
+            <Canvas x:Name="StarsCanvas" Panel.ZIndex="3" Canvas.Left="-2586" Canvas.Top="-1124" Height="2735" Width="5471"/>
         </Canvas>
 
         <Grid Panel.ZIndex="100" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="red">
-            <Button Content="TEST" Click="ButtonBase_OnClick"/>
+            <!--<Button Content="TEST" Click="ButtonBase_OnClick"/>-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBox x:Name="SearchTextBox" KeyDown="SearchTextBox_OnKeyDown"></TextBox>
+
+            
         </Grid>
     </Grid>
 </Window>

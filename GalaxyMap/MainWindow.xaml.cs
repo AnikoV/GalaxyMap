@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using GalaxyMap.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
@@ -41,6 +42,7 @@ namespace GalaxyMap
         }
 
         #region MouseManipulations
+
         private void EnableMouseManipulations()
         {
             BackgroundCanvas.MouseLeftButtonDown += (sender, args) =>
@@ -88,6 +90,7 @@ namespace GalaxyMap
             var newMatrix = new MatrixTransform(matrix);
             element.RenderTransform = newMatrix;
         }
+
         #endregion
 
         #region TEST UI
@@ -139,7 +142,6 @@ namespace GalaxyMap
         {
             foreach (var star in galaxy.Stars)
             {
-                
                 var scaletransform = new ScaleTransform
                 {
                     ScaleX = ImageScale,
@@ -163,12 +165,10 @@ namespace GalaxyMap
                     Foreground = Brushes.Chartreuse,
                     TextAlignment = TextAlignment.Center
                 };
-                StarsCanvas.Children.Add(textBlock);
-                var s = star.X + _labelOffset.X - textBlock.Width/2.0;
-                Canvas.SetLeft(textBlock, s);
+                Canvas.SetLeft(textBlock, star.X + _labelOffset.X -30);
                 Canvas.SetTop(textBlock,star.Y + _labelOffset.Y);
 
-                ;
+                StarsCanvas.Children.Add(textBlock);
                 StarsCanvas.Children.Add(image);
             }
         }
@@ -200,6 +200,7 @@ namespace GalaxyMap
             if (e.Key == Key.Return)
             {
                 _viewModel.Search(SearchTextBox.Text.ToLower());
+                
             }
         }
     }

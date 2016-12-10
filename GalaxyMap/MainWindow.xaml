@@ -3,7 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="clr-namespace:GalaxyMap"
     mc:Ignorable="d"
     Title="MainWindow" Height="484" Width="783">
     <Grid>
@@ -16,14 +15,19 @@
             <Canvas x:Name="StarsCanvas" Panel.ZIndex="3" Canvas.Left="-2586" Canvas.Top="-1124" Height="2735" Width="5471"/>
         </Canvas>
 
-        <Grid Panel.ZIndex="100" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="red">
-            <!--<Button Content="TEST" Click="ButtonBase_OnClick"/>-->
+        <Grid Panel.ZIndex="100" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+            </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-
-            <TextBox x:Name="SearchTextBox" KeyDown="SearchTextBox_OnKeyDown"></TextBox>
+            <StackPanel Margin="5" Grid.Row="0">
+                <TextBlock Text="Поиск"/>
+                <TextBox x:Name="SearchTextBox" KeyDown="SearchTextBox_OnKeyDown"></TextBox>
+            </StackPanel>
+            <ListView Grid.Row="1" ItemsSource="{Binding Galaxies}"/>
 
             
         </Grid>

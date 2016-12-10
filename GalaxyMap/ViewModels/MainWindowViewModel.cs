@@ -1,6 +1,7 @@
 ﻿using GalaxyMap.Models;
 using GalaxyMap.Utils;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace GalaxyMap.ViewModels
 {
@@ -14,7 +15,7 @@ namespace GalaxyMap.ViewModels
 
         public void Search(string searchText)
         {
-            throw new System.NotImplementedException();
+            Debug.WriteLine("Search " + searchText);
         }
     }
 }

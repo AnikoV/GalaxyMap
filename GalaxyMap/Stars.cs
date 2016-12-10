@@ -7,20 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GalaxyMap.Models
+namespace GalaxyMap
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Star
+    public partial class Stars
     {
         public int id { get; set; }
         public string nameOfStar { get; set; }
-        public Nullable<double> x { get; set; }
-        public Nullable<double> y { get; set; }
-        public int idOfConstellation { get; set; }
+        public Nullable<int> x { get; set; }
+        public Nullable<int> y { get; set; }
+        public int galaxyID { get; set; }
         public Nullable<bool> flag { get; set; }
     
-        public virtual Constellation Constellation { get; set; }
+        public virtual Galaxies Galaxies { get; set; }
     }
 }

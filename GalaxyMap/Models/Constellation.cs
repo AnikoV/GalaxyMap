@@ -12,15 +12,19 @@ namespace GalaxyMap.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Star
+    public partial class Constellation
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Constellation()
+        {
+            this.Star = new HashSet<Star>();
+        }
+    
         public int id { get; set; }
-        public string nameOfStar { get; set; }
-        public Nullable<double> x { get; set; }
-        public Nullable<double> y { get; set; }
-        public int idOfConstellation { get; set; }
+        public string nameOfConstellation { get; set; }
         public Nullable<bool> flag { get; set; }
     
-        public virtual Constellation Constellation { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Star> Star { get; set; }
     }
 }

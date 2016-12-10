@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="galaxyMapModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Constellation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameOfConstellation" Type="nvarchar(max)" />
+          <Property Name="flag" Type="bit" />
+        </EntityType>
+        <EntityType Name="Star">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameOfStar" Type="nvarchar(max)" />
+          <Property Name="x" Type="float" />
+          <Property Name="y" Type="float" />
+          <Property Name="idOfConstellation" Type="int" Nullable="false" />
+          <Property Name="flag" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Star_Constellation">
+          <End Role="Constellation" Type="Self.Constellation" Multiplicity="1" />
+          <End Role="Star" Type="Self.Star" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Constellation">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Star">
+              <PropertyRef Name="idOfConstellation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="galaxyMapModelStoreContainer">
+          <EntitySet Name="Constellation" EntityType="Self.Constellation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Star" EntityType="Self.Star" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Star_Constellation" Association="Self.FK_Star_Constellation">
+            <End Role="Constellation" EntitySet="Constellation" />
+            <End Role="Star" EntitySet="Star" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="galaxyMapModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Constellation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameOfConstellation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="flag" Type="Boolean" />
+          <NavigationProperty Name="Star" Relationship="Self.FK_Star_Constellation" FromRole="Constellation" ToRole="Star" />
+        </EntityType>
+        <EntityType Name="Star">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameOfStar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="x" Type="Double" />
+          <Property Name="y" Type="Double" />
+          <Property Name="idOfConstellation" Type="Int32" Nullable="false" />
+          <Property Name="flag" Type="Boolean" />
+          <NavigationProperty Name="Constellation" Relationship="Self.FK_Star_Constellation" FromRole="Star" ToRole="Constellation" />
+        </EntityType>
+        <Association Name="FK_Star_Constellation">
+          <End Role="Constellation" Type="Self.Constellation" Multiplicity="1" />
+          <End Role="Star" Type="Self.Star" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Constellation">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Star">
+              <PropertyRef Name="idOfConstellation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="galaxyMapEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Constellation" EntityType="Self.Constellation" />
+          <EntitySet Name="Star" EntityType="Self.Star" />
+          <AssociationSet Name="FK_Star_Constellation" Association="Self.FK_Star_Constellation">
+            <End Role="Constellation" EntitySet="Constellation" />
+            <End Role="Star" EntitySet="Star" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="galaxyMapModelStoreContainer" CdmEntityContainer="galaxyMapEntities">
+          <EntitySetMapping Name="Constellation">
+            <EntityTypeMapping TypeName="galaxyMapModel.Constellation">
+              <MappingFragment StoreEntitySet="Constellation">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nameOfConstellation" ColumnName="nameOfConstellation" />
+                <ScalarProperty Name="flag" ColumnName="flag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Star">
+            <EntityTypeMapping TypeName="galaxyMapModel.Star">
+              <MappingFragment StoreEntitySet="Star">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nameOfStar" ColumnName="nameOfStar" />
+                <ScalarProperty Name="x" ColumnName="x" />
+                <ScalarProperty Name="y" ColumnName="y" />
+                <ScalarProperty Name="idOfConstellation" ColumnName="idOfConstellation" />
+                <ScalarProperty Name="flag" ColumnName="flag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

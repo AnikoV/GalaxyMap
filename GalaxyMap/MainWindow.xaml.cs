@@ -128,28 +128,28 @@ namespace GalaxyMap
 
         private void CreateData()
         {
-            var random = new Random();
-            Galaxies = new List<Galaxy>();
-            for (int i = 0; i < 10; i++)
-            {
-                var stars = new List<Star>();
-                for (int j = 0; j < 10; j++)
-                {
-                    var star = new Star();
-                    star.Id = j;
-                    star.Name = "Galaxy" + i + "Star" + j;
-                    star.Source = "Images/stars.png";
-                    star.X = random.Next(0, (int) StarsCanvas.ActualWidth);
-                    star.Y = random.Next(0, (int)StarsCanvas.ActualHeight);
-                    stars.Add(star);
-                }
-                Galaxies.Add(new Galaxy
-                {
-                    Id = i,
-                    Name = "Galaxy" + i,
-                    Stars = stars
-                });
-            }
+            //var random = new Random();
+            //Galaxies = new List<Galaxy>();
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    var stars = new List<Star>();
+            //    for (int j = 0; j < 10; j++)
+            //    {
+            //        var star = new Star();
+            //        star.Id = j;
+            //        star.Name = "Galaxy" + i + "Star" + j;
+            //        star.Source = "Images/stars.png";
+            //        star.X = random.Next(0, (int) StarsCanvas.ActualWidth);
+            //        star.Y = random.Next(0, (int)StarsCanvas.ActualHeight);
+            //        stars.Add(star);
+            //    }
+            //    Galaxies.Add(new Galaxy
+            //    {
+            //        Id = i,
+            //        Name = "Galaxy" + i,
+            //        Stars = stars
+            //    });
+            //}
         }
         
         #endregion

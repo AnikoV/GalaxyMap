@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GalaxyMap
+namespace GalaxyMap.Models
 {
     using System;
     using System.Collections.Generic;

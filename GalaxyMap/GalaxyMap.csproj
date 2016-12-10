@@ -68,27 +68,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Constellation.cs">
+    <Compile Include="Models\Constellation.cs">
       <DependentUpon>galaxyMapModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="galaxyMapModel.Context.cs">
+    <Compile Include="Models\galaxyMapModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>galaxyMapModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="galaxyMapModel.cs">
+    <Compile Include="Models\galaxyMapModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>galaxyMapModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="galaxyMapModel.Designer.cs">
+    <Compile Include="Models\galaxyMapModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>galaxyMapModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Galaxy.cs" />
-    <Compile Include="Models\Star.cs" />
-    <Compile Include="Star.cs">
+    <Compile Include="Models\Star.cs">
       <DependentUpon>galaxyMapModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Utils\BasePropertyChanged.cs" />
@@ -124,11 +122,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="galaxyMapModel.edmx">
+    <EntityDeploy Include="Models\galaxyMapModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>galaxyMapModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="galaxyMapModel.edmx.diagram">
+    <None Include="Models\galaxyMapModel.edmx.diagram">
       <DependentUpon>galaxyMapModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -148,12 +146,12 @@
     <Resource Include="Images\galactic_full.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="galaxyMapModel.Context.tt">
+    <Content Include="Models\galaxyMapModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>galaxyMapModel.edmx</DependentUpon>
       <LastGenOutput>galaxyMapModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="galaxyMapModel.tt">
+    <Content Include="Models\galaxyMapModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>galaxyMapModel.edmx</DependentUpon>
       <LastGenOutput>galaxyMapModel.cs</LastGenOutput>

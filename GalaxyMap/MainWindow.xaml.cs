@@ -84,24 +84,11 @@ namespace GalaxyMap
             CreateData();
             Draw();
         }
-        System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-        private void Draw()
-        {            
-            dispatcherTimer.Tick += DispatcherTimerOnTick;
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
-            dispatcherTimer.Start();
-        }
 
-        BitmapImage starBitmapImage = new BitmapImage(new Uri("pack://application:,,,/Images/stars.png", UriKind.Absolute));
-        private void DispatcherTimerOnTick(object sender, EventArgs eventArgs)
+        private void Draw()
         {
-            if (counter == (Galaxies.Count - 1))
+            foreach (var galaxy in Galaxies)
             {
-                dispatcherTimer.Stop();
-            }
-            else
-            {
-                var galaxy = Galaxies[counter];
                 foreach (var star in galaxy.Stars)
                 {
                     var image = new Image();
@@ -120,9 +107,16 @@ namespace GalaxyMap
                     Canvas.SetTop(image, star.Y);
                     StarsCanvas.Children.Add(image);
                 }
-                counter++;
+
+                foreach (var star in galaxy.Stars)
+                {
+                    
+                }
             }
         }
+
+        BitmapImage starBitmapImage = new BitmapImage(new Uri("pack://application:,,,/Images/stars.png", UriKind.Absolute));
+
 
         int counter = 0;
 

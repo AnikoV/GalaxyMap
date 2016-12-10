@@ -6,16 +6,19 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 using GalaxyMap.Models;
 
 namespace GalaxyMap
 {
     public partial class MainWindow : Window
     {
-        private Point FirstPoint;
-        private MainWindowViewModel _viewModel;
-
         public List<Galaxy> Galaxies { get; set; }
+
+        private MainWindowViewModel _viewModel;
+        private const double ImageScale = 0.3;
+        private Point _mousePos;
+        private readonly BitmapImage _starBitmapImage = new BitmapImage(new Uri("pack://application:,,,/Images/stars.png", UriKind.Absolute));
 
         public MainWindow()
         {
@@ -23,17 +26,15 @@ namespace GalaxyMap
 
             _viewModel = new MainWindowViewModel();
             DataContext = _viewModel;
-
-            EnableMouseMovements();
+            EnableMouseManipulations();
         }
-        
-        
 
-        private void EnableMouseMovements()
+#region MouseManipulations
+        private void EnableMouseManipulations()
         {
             BackgroundCanvas.MouseLeftButtonDown += (sender, args) =>
             {
-                FirstPoint = args.GetPosition(this);
+                _mousePos = args.GetPosition(this);
                 GalaxyImage.CaptureMouse();
             };
 
@@ -48,7 +49,7 @@ namespace GalaxyMap
                 if (args.LeftButton == MouseButtonState.Pressed)
                 {
                     var temp = args.GetPosition(this);
-                    var res = new Point(FirstPoint.X - temp.X, FirstPoint.Y - temp.Y);
+                    var res = new Point(_mousePos.X - temp.X, _mousePos.Y - temp.Y);
 
                     Canvas.SetLeft(GalaxyImage, Canvas.GetLeft(GalaxyImage) - res.X);
                     Canvas.SetTop(GalaxyImage, Canvas.GetTop(GalaxyImage) - res.Y);
@@ -56,7 +57,7 @@ namespace GalaxyMap
                     Canvas.SetLeft(StarsCanvas, Canvas.GetLeft(StarsCanvas) - res.X);
                     Canvas.SetTop(StarsCanvas, Canvas.GetTop(StarsCanvas) - res.Y);
 
-                    FirstPoint = temp;
+                    _mousePos = temp;
                 }
             };
 
@@ -76,49 +77,20 @@ namespace GalaxyMap
             var newMatrix = new MatrixTransform(matrix);
             element.RenderTransform = newMatrix;
         }
+        #endregion
 
         #region TEST UI
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            TestUiCase();
+        }
 
         private void TestUiCase()
         {
             CreateData();
-            Draw();
+            DrawData();
         }
-
-        private void Draw()
-        {
-            foreach (var galaxy in Galaxies)
-            {
-                foreach (var star in galaxy.Stars)
-                {
-                    var image = new Image();
-                    var st = new ScaleTransform
-                    {
-                        ScaleX = 0.3,
-                        ScaleY = 0.3
-                    };
-                    var rt = new TransformGroup();
-                    rt.Children.Add(st);
-                    image.RenderTransform = rt;
-                    image.Source = starBitmapImage;
-                    image.Width = starBitmapImage.Width;
-                    image.Height = starBitmapImage.Height;
-                    Canvas.SetLeft(image, star.X);
-                    Canvas.SetTop(image, star.Y);
-                    StarsCanvas.Children.Add(image);
-                }
-
-                foreach (var star in galaxy.Stars)
-                {
-                    
-                }
-            }
-        }
-
-        BitmapImage starBitmapImage = new BitmapImage(new Uri("pack://application:,,,/Images/stars.png", UriKind.Absolute));
-
-
-        int counter = 0;
 
         private void CreateData()
         {
@@ -129,12 +101,14 @@ namespace GalaxyMap
                 var stars = new List<Star>();
                 for (int j = 0; j < 10; j++)
                 {
-                    var star = new Star();
-                    star.Id = j;
-                    star.Name = "Galaxy" + i + "Star" + j;
-                    star.Source = "Images/stars.png";
-                    star.X = random.Next(0, (int) StarsCanvas.ActualWidth);
-                    star.Y = random.Next(0, (int)StarsCanvas.ActualHeight);
+                    var star = new Star
+                    {
+                        Id = j,
+                        Name = "Galaxy" + i + "Star" + j,
+                        Source = "Images/stars.png",
+                        X = random.Next(0, (int)StarsCanvas.ActualWidth),
+                        Y = random.Next(0, (int)StarsCanvas.ActualHeight)
+                    };
                     stars.Add(star);
                 }
                 Galaxies.Add(new Galaxy
@@ -145,12 +119,59 @@ namespace GalaxyMap
                 });
             }
         }
+
+        private void DrawData()
+        {
+            foreach (var galaxy in Galaxies)
+            {
+                DrawLinesBetweenStars(galaxy);
+                DrawStars(galaxy);
+            }
+        }
+
+        private void DrawStars(Galaxy galaxy)
+        {
+            foreach (var star in galaxy.Stars)
+            {
+                var image = new Image();
+                var st = new ScaleTransform
+                {
+                    ScaleX = ImageScale,
+                    ScaleY = ImageScale
+                };
+                var rt = new TransformGroup();
+                rt.Children.Add(st);
+                image.RenderTransform = rt;
+                image.Source = _starBitmapImage;
+                image.Width = _starBitmapImage.Width;
+                image.Height = _starBitmapImage.Height;
+                Canvas.SetLeft(image, star.X);
+                Canvas.SetTop(image, star.Y);
+                StarsCanvas.Children.Add(image);
+            }
+        }
+
+        private void DrawLinesBetweenStars(Galaxy galaxy)
+        {
+            for (int i = 0; i < galaxy.Stars.Count - 1; i++)
+            {
+                var star0 = galaxy.Stars[i];
+                var star1 = galaxy.Stars[i + 1];
+                var offset = new Vector((_starBitmapImage.Width / 2.0) * ImageScale,
+                                           (_starBitmapImage.Height / 2.0) * ImageScale);
+                var line = new Line
+                {
+                    X1 = star0.X + offset.X,
+                    Y1 = star0.Y + offset.Y,
+                    X2 = star1.X + offset.X,
+                    Y2 = star1.Y + offset.Y,
+                    Stroke = Brushes.LightSteelBlue,
+                    StrokeThickness = 2
+                };
+                StarsCanvas.Children.Add(line);
+            }
+        }
         
         #endregion
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            TestUiCase();
-        }
     }
 }

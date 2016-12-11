@@ -10,19 +10,18 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nameOfConstellation" Type="nvarchar(max)" />
-          <Property Name="flag" Type="bit" />
+          <Property Name="ConstellationName" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Star">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nameOfStar" Type="nvarchar(max)" />
-          <Property Name="x" Type="float" />
-          <Property Name="y" Type="float" />
+          <Property Name="nameOfStar" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="x" Type="float" Nullable="false" />
+          <Property Name="y" Type="float" Nullable="false" />
           <Property Name="idOfConstellation" Type="int" Nullable="false" />
-          <Property Name="flag" Type="bit" />
+          <Property Name="chain" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Star_Constellation">
           <End Role="Constellation" Type="Self.Constellation" Multiplicity="1" />
@@ -54,8 +53,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nameOfConstellation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="flag" Type="Boolean" />
+          <Property Name="ConstellationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Star" Relationship="Self.FK_Star_Constellation" FromRole="Constellation" ToRole="Star" />
         </EntityType>
         <EntityType Name="Star">
@@ -63,11 +61,11 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nameOfStar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="x" Type="Double" />
-          <Property Name="y" Type="Double" />
+          <Property Name="nameOfStar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="x" Type="Double" Nullable="false" />
+          <Property Name="y" Type="Double" Nullable="false" />
           <Property Name="idOfConstellation" Type="Int32" Nullable="false" />
-          <Property Name="flag" Type="Boolean" />
+          <Property Name="chain" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Constellation" Relationship="Self.FK_Star_Constellation" FromRole="Star" ToRole="Constellation" />
         </EntityType>
         <Association Name="FK_Star_Constellation">
@@ -82,7 +80,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="galaxyMapEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="galaxyMapEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Constellation" EntityType="Self.Constellation" />
           <EntitySet Name="Star" EntityType="Self.Star" />
           <AssociationSet Name="FK_Star_Constellation" Association="Self.FK_Star_Constellation">
@@ -95,13 +93,12 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="galaxyMapModelStoreContainer" CdmEntityContainer="galaxyMapEntities">
+        <EntityContainerMapping StorageEntityContainer="galaxyMapModelStoreContainer" CdmEntityContainer="galaxyMapEntities1">
           <EntitySetMapping Name="Constellation">
             <EntityTypeMapping TypeName="galaxyMapModel.Constellation">
               <MappingFragment StoreEntitySet="Constellation">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nameOfConstellation" ColumnName="nameOfConstellation" />
-                <ScalarProperty Name="flag" ColumnName="flag" />
+                <ScalarProperty Name="ConstellationName" ColumnName="ConstellationName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -113,7 +110,7 @@
                 <ScalarProperty Name="x" ColumnName="x" />
                 <ScalarProperty Name="y" ColumnName="y" />
                 <ScalarProperty Name="idOfConstellation" ColumnName="idOfConstellation" />
-                <ScalarProperty Name="flag" ColumnName="flag" />
+                <ScalarProperty Name="chain" ColumnName="chain" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

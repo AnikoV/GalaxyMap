@@ -13,10 +13,10 @@ namespace GalaxyMap.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class galaxyMapEntities : DbContext
+    public partial class galaxyMapEntities1 : DbContext
     {
-        public galaxyMapEntities()
-            : base("name=galaxyMapEntities")
+        public galaxyMapEntities1()
+            : base("name=galaxyMapEntities1")
         {
         }
     

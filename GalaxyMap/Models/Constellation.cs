@@ -21,8 +21,7 @@ namespace GalaxyMap.Models
         }
     
         public int id { get; set; }
-        public string nameOfConstellation { get; set; }
-        public Nullable<bool> flag { get; set; }
+        public string ConstellationName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Star> Star { get; set; }

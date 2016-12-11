@@ -16,11 +16,16 @@ namespace GalaxyMap.Models
     {
         public int id { get; set; }
         public string nameOfStar { get; set; }
-        public Nullable<double> x { get; set; }
-        public Nullable<double> y { get; set; }
+        public double x { get; set; }
+        public double y { get; set; }
         public int idOfConstellation { get; set; }
-        public Nullable<bool> flag { get; set; }
+        public int chain { get; set; }
     
         public virtual Constellation Constellation { get; set; }
+        
+        public override string ToString()
+        {
+            return nameOfStar;
+        }
     }
 }

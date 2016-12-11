@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3f7c88641fe247158113456009259908" Name="Diagram1">
-        <EntityTypeShape EntityType="galaxyMapModel.Constellation" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+      <Diagram DiagramId="14ac5d885f084bdab45539a1641e5990" Name="Diagram1">
+        <EntityTypeShape EntityType="galaxyMapModel.Constellation" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="galaxyMapModel.Star" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="galaxyMapModel.FK_Star_Constellation" ManuallyRouted="false" />
       </Diagram>
